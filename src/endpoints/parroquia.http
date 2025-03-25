@@ -1,0 +1,5 @@
+### Get todas las parroquias
+get http://localhost:3000/parroquia
+
+### Get una parroquia por id
+get http://localhost:3000/parroquia/40

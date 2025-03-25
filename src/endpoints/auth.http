@@ -1,0 +1,14 @@
+### Create un confirmando
+POST http://localhost:3000/auth/confirmando
+Content-Type: application/json
+
+{
+  "nombre": "Josbert",
+  "apellido": "Guedez",
+  "email": "josbertjg@gmail.com",
+  "phone": "04145598216",
+  "born_date": "2001-10-12",
+  "id_parroquia": 40,
+  "cedula": "V28150010",
+  "primera_comunion": true
+}

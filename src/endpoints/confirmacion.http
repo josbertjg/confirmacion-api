@@ -1,0 +1,4 @@
+### Get todas las confiramciones
+get http://localhost:3000/confirmacion
+
+
