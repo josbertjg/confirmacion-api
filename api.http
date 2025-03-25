@@ -1,0 +1,25 @@
+### Obtener url "/""
+GET http://localhost:3000
+
+### Catequesis endpoints
+
+### Get all Catequesis
+GET http://localhost:3000/catequesis
+
+### Get catequesis by ID
+GET http://localhost:3000/catequesis/123155
+
+### Create a catequesis
+POST http://localhost:3000/catequesis
+Content-Type: application/json
+
+{
+  "hola": "como estas?",
+  "prueba": "de envio"
+}
+
+### Update a catequesis
+PUT http://localhost:3000/catequesis/ otro id cualuqiera
+
+### Update a catequesis
+DELETE http://localhost:3000/catequesis/un id cualquiera
