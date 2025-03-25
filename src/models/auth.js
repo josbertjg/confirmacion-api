@@ -17,11 +17,11 @@ export class AuthModel extends Connection {
 
     // Validando que no exista un usuario con el correo recibido
     const [email] = await this.db.query("SELECT * FROM users WHERE LOWER(email) = ?", [inputs.email.toLowerCase()])
-    if(email.length > 0) return {error: "Ya existe un usuario con ese correo"}
+    if(email.length > 0) return {error: "Ya existe un usuario con este correo electronico"}
 
     // Validando que no exista un usuario con la cedula recibida
     const [cedula] = await this.db.query("SELECT * FROM users WHERE cedula = ?", [inputs.cedula])
-    if(cedula.length > 0) return {error: "Ya existe un usuario con esa cedula"}
+    if(cedula.length > 0) return {error: "Ya existe un usuario con este cedula"}
 
     // Creando el usuario
     const userId = randomUUID();
@@ -29,7 +29,7 @@ export class AuthModel extends Connection {
       (id, nombre, apellido, email, cedula, phone, role, born_date, id_parroquia) 
       VALUES (UUID_TO_BIN(?),?, ?, ?, ?, ?, ?, ?, ?);`, 
       [userId,inputs.nombre, inputs.apellido, inputs.email, inputs.cedula, inputs.phone, "CONFIRMANDO", inputs.born_date, inputs.id_parroquia])
-      
+
     // Creando el confirmando
     await this.db.query(`INSERT INTO confirmandos 
       (user_id, id_confirmacion, primera_comunion) 

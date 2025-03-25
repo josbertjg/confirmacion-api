@@ -1,0 +1,8 @@
+### Get todas las confirmandos
+GET http://localhost:3000/confirmando
+
+### Get una confirmando por id
+GET http://localhost:3000/confirmando/6f6675a6-09c4-11f0-82e1-3c7c3f806d18
+
+### Inscribir a un confirmando
+GET http://localhost:3000/confirmando/inscribir/6f6675a6-09c4-11f0-82e1-3c7c3f806d18
