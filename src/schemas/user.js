@@ -5,6 +5,7 @@ export const userSchema = z.object({
   nombre: z.string().min(1).max(255),
   apellido: z.string().min(1).max(255),
   email: z.string().email().max(255),
+  password: z.string().min(8).max(255),
   picture: z.string().url().optional(),
   cedula: z.string().min(7).max(10),
   phone: z.string().min(8).max(30),

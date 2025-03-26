@@ -1,3 +1,12 @@
+### User Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "josbertjg@gmail.com",
+  "password": "12346798d",
+}
+
 ### Create un confirmando
 POST http://localhost:3000/auth/confirmando
 Content-Type: application/json
