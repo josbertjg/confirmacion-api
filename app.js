@@ -6,6 +6,8 @@ import { authRouter } from "./src/routes/auth.js";
 import { parroquiaRouter } from "./src/routes/parroquia.js";
 import { confirmacionRouter } from "./src/routes/confirmacion.js";
 import { confirmandoRouter } from "./src/routes/confirmando.js";
+import { catequistaRouter } from "./src/routes/catequista.js";
+import { userRouter } from "./src/routes/user.js";
 
 const app = express();
 
@@ -19,6 +21,8 @@ app.use("/auth", authRouter)
 app.use("/confirmacion", confirmacionRouter)
 app.use("/parroquia", parroquiaRouter)
 app.use("/confirmando", confirmandoRouter)
+app.use("/catequista", catequistaRouter)
+app.use("/user", userRouter)
  
 const PORT = process.env.PROT ?? 3000;
 app.listen(PORT, () => {

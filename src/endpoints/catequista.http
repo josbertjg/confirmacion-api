@@ -1,0 +1,8 @@
+### Get todas las catequista
+GET http://localhost:3000/catequista
+
+### Get una catequista por id
+GET http://localhost:3000/catequista/e10b85a4-0a46-11f0-8b12-d481d7c6b499
+
+### Activar un catequista
+POST http://localhost:3000/catequista/activate/d5d354be-ad2a-46cf-b5c1-9f03deca59db
