@@ -33,7 +33,7 @@ export class AuthModel extends Connection {
     const userId = randomUUID();
     await this.db.query(`INSERT INTO users 
       (id, nombre, apellido, email, cedula, phone, role, born_date, id_parroquia) 
-      VALUES (UUID_TO_BIN(?),?, ?, ?, ?, ?, ?, ?, ?);`, 
+      VALUES (UUID_TO_BIN(?),?, ?, ?, UPPER(?), ?, ?, ?, ?);`, 
       [userId,inputs.nombre, inputs.apellido, inputs.email, inputs.cedula, inputs.phone, "CONFIRMANDO", inputs.born_date, inputs.id_parroquia])
 
     // Creando el confirmando
@@ -61,9 +61,8 @@ export class AuthModel extends Connection {
     const userId = randomUUID();
     await this.db.query(`INSERT INTO users 
       (id, nombre, apellido, email, cedula, phone, role, born_date, id_parroquia) 
-      VALUES (UUID_TO_BIN(?),?, ?, ?, ?, ?, ?, ?, ?);`, 
+      VALUES (UUID_TO_BIN(?),?, ?, ?, UPPER(?), ?, ?, ?, ?);`, 
       [userId,inputs.nombre, inputs.apellido, inputs.email, inputs.cedula, inputs.phone, "CATEQUISTA", inputs.born_date, inputs.id_parroquia])
-      console.log('creo al usuario', userId)
     return {message: "Catequista registrado exitosamente"}
   }
 }

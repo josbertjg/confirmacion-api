@@ -20,6 +20,13 @@ export class CatequistaModel extends Connection {
     if(catequista.length > 0) return {error: "El catequista ya se encuentra activo"}
 
     await this.db.query(`INSERT INTO catequistas (user_id) VALUES (UUID_TO_BIN(?));`, [id])
+
+    const [infoCatequista] = await this.db.query(`SELECT cedula FROM users WHERE id = UUID_TO_BIN(?);`, [id])
+    const [{cedula}] = infoCatequista
+    const cedulaSinChar = Array.from(cedula).slice(1).join('')
+    
+    await this.db.query(`UPDATE users SET password = ? WHERE id = UUID_TO_BIN(?);`, [cedulaSinChar,id])
+
     return {message: "Catequista activado exitosamente"};
   }
 

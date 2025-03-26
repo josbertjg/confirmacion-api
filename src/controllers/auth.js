@@ -17,8 +17,7 @@ export class AuthController {
         
       res.json({data: result})
     }catch(e){
-      res.status(500).json({error: "A server error ocurred, try again later"})
-      console.log(e)
+      ServerErrorHandler({error: e, res})
     }
   }
 
@@ -32,8 +31,7 @@ export class AuthController {
 
       res.json({data: result})
     }catch(e){
-      res.status(500).json({error: "A server error ocurred, try again later"})
-      console.log(e)
+      ServerErrorHandler({error: e, res})
     }
   }
 

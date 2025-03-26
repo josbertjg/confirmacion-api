@@ -7,7 +7,7 @@ export const userSchema = z.object({
   email: z.string().email().max(255),
   password: z.string().min(8).max(255),
   picture: z.string().url().optional(),
-  cedula: z.string().min(7).max(10),
+  cedula: z.string().min(6).max(11).regex(/^[a-zA-Z]\d{5,10}$/),
   phone: z.string().min(8).max(30),
   role: z.enum(['ADMIN', 'CATEQUISTA', 'CONFIRMANDO', 'COORDINADOR', 'AUXILIAR']),
   born_date: z.string().date(),

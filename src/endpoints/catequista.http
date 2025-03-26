@@ -5,4 +5,4 @@ GET http://localhost:3000/catequista
 GET http://localhost:3000/catequista/e10b85a4-0a46-11f0-8b12-d481d7c6b499
 
 ### Activar un catequista
-POST http://localhost:3000/catequista/activate/d5d354be-ad2a-46cf-b5c1-9f03deca59db
+POST http://localhost:3000/catequista/activate/3cff423c-0a66-11f0-966a-3c7c3f806d18

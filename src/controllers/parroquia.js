@@ -1,4 +1,5 @@
 import { ParroquiaModel } from "../models/parroquia.js"
+import { ServerErrorHandler } from "../utils/errorHandler.js"
 
 
 const parroquiaModel = new ParroquiaModel()
@@ -9,8 +10,7 @@ export class ParroquiaController {
       const [parroquias] = await parroquiaModel.getAll()
       res.json({data: parroquias})
     }catch(e){
-      res.status(500).json({error: "A server error ocurred, try again later"})
-      console.log(e)
+      ServerErrorHandler({error: e, res})
     }
   }
 
@@ -20,8 +20,7 @@ export class ParroquiaController {
       const parroquia = await parroquiaModel.getById({id})
       res.json({data: parroquia})
     }catch(e){
-      res.status(500).json({error: "A server error ocurred, try again later"})
-      console.log(e)
+      ServerErrorHandler({error: e, res})
     }
   }
 }

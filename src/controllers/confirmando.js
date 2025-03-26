@@ -1,4 +1,5 @@
 import { ConfirmandoModel } from "../models/confirmando.js"
+import { ServerErrorHandler } from "../utils/errorHandler.js"
 
 const confirmandoModel = new ConfirmandoModel()
 
@@ -8,8 +9,7 @@ export class ConfirmandoController {
       const [confirmando] = await confirmandoModel.getAll()
       res.json({data: confirmando})
     }catch(e){
-      res.status(500).json({error: "A server error ocurred, try again later"})
-      console.log(e)
+      ServerErrorHandler({error: e, res})
     }
   }
 
@@ -19,8 +19,7 @@ export class ConfirmandoController {
       const confirmando = await confirmandoModel.getById({id})
       res.json({data: confirmando})
     }catch(e){
-      res.status(500).json({error: "A server error ocurred, try again later"})
-      console.log(e)
+      ServerErrorHandler({error: e, res})
     }
   }
 
@@ -30,8 +29,7 @@ export class ConfirmandoController {
       const confirmando = await confirmandoModel.inscribir({id})
       res.json({data: confirmando})
     }catch(e){
-      res.status(500).json({error: "A server error ocurred, try again later"})
-      console.log(e)
+      ServerErrorHandler({error: e, res})
     }
   }
 }

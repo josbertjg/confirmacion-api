@@ -1,4 +1,5 @@
 import { ConfirmacionModel } from "../models/confirmacion.js"
+import { ServerErrorHandler } from "../utils/errorHandler.js"
 
 const confirmacionModel = new ConfirmacionModel()
 
@@ -8,7 +9,7 @@ export class ConfirmacionController {
       const [confirmaciones] = await confirmacionModel.getAll()
       res.json({data: confirmaciones})
     }catch(e){
-      res.status(500).json({error: "A server error ocurred, try again later"})
+      ServerErrorHandler({error: e, res})
     }
   }
 }
