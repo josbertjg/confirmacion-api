@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "email": "josbertjg@gmail.com",
-  "password": "12346798d",
+  "password": "12345678"
 }
 
 ### Create un confirmando

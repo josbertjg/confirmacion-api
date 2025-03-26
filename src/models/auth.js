@@ -9,6 +9,12 @@ export class AuthModel extends Connection {
     super(); // Llama al constructor de la clase padre (Connection)
   }
 
+  async login (inputs) {
+    const [users] = await this.db.query("SELECT *, BIN_TO_UUID(id) as id FROM users WHERE email = ? AND password = ?", [inputs.email, inputs.password])
+    if(users.length > 0) return {message: "Login exitoso"}
+    else return {error: 'Correo o contraseña incorrectos'}
+  }
+
   async registrarConfirmando (inputs) {
 
     // Validando que exista una confirmacion activa en este momento
@@ -40,7 +46,7 @@ export class AuthModel extends Connection {
     return {message: "Confirmando registrado exitosamente"}
   }
 
-  async login (inputs) {
-    const [user] = await this.db.query("SELECT * FROM users WHERE email = ? AND password = ?", [inputs.email, inputs.password])
+  async registrarCatequista (inputs) {
+    
   }
 }
