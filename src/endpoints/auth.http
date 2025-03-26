@@ -21,3 +21,17 @@ Content-Type: application/json
   "cedula": "V28150010",
   "primera_comunion": true
 }
+
+### Create un catequista
+POST http://localhost:3000/auth/catequista
+Content-Type: application/json
+
+{
+  "nombre": "Josbert",
+  "apellido": "Guedez",
+  "email": "josbertmora@gmail.com",
+  "phone": "04145598216",
+  "born_date": "2001-10-12",
+  "id_parroquia": 40,
+  "cedula": "V29624809"
+}

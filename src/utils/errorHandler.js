@@ -5,3 +5,8 @@ export function ErrorInputsHandler(zodError) {
     details: details
   }
 }
+
+export function ServerErrorHandler({error, res}){
+  console.log(error)
+  return res.status(500).json({error: "A server error ocurred, try again later"})
+}

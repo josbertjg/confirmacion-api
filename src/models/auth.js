@@ -47,6 +47,23 @@ export class AuthModel extends Connection {
   }
 
   async registrarCatequista (inputs) {
-    
+    // Validando que no exista un usuario con el correo recibido
+    const [email] = await this.db.query("SELECT * FROM users WHERE LOWER(email) = ?", [inputs.email.toLowerCase()])
+    console.log('email: ',email.length > 0)
+    if(email.length > 0) return {error: "Ya existe un usuario con este correo electronico"}
+
+    // Validando que no exista un usuario con la cedula recibida
+    const [cedula] = await this.db.query("SELECT * FROM users WHERE cedula = ?", [inputs.cedula])
+    console.log('cedula: ',cedula)
+    if(cedula.length > 0) return {error: "Ya existe un usuario con este cedula"}
+
+    // Creando el usuario
+    const userId = randomUUID();
+    await this.db.query(`INSERT INTO users 
+      (id, nombre, apellido, email, cedula, phone, role, born_date, id_parroquia) 
+      VALUES (UUID_TO_BIN(?),?, ?, ?, ?, ?, ?, ?, ?);`, 
+      [userId,inputs.nombre, inputs.apellido, inputs.email, inputs.cedula, inputs.phone, "CATEQUISTA", inputs.born_date, inputs.id_parroquia])
+      console.log('creo al usuario', userId)
+    return {message: "Catequista registrado exitosamente"}
   }
 }
