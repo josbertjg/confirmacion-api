@@ -2,4 +2,4 @@
 GET http://localhost:3000/user
 
 ### Get un usuario por id
-GET http://localhost:3000/user/0a37cff7-46ff-4baf-83f5-4803100c5cc2
+GET http://localhost:3000/user/17492fad-13a1-434e-9688-09846adc01ce

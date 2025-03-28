@@ -2,11 +2,11 @@
   "name": "confirmacion-api",
   "version": "1.0.0",
   "main": "app.js",
-  "type": "module",
   "scripts": {
+    "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --watch ./app.js",
-    "dev": "node --watch ./app.js"
+    "start": "node build/app.js",
+    "dev": "ts-node-dev app.ts"
   },
   "keywords": [],
   "author": "josbertjg",
@@ -18,5 +18,12 @@
     "express": "4.21.2",
     "mysql2": "^3.14.0",
     "zod": "3.24.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.2"
   }
 }
