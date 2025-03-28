@@ -5,4 +5,4 @@ GET http://localhost:3000/confirmando
 GET http://localhost:3000/confirmando/6f6675a6-09c4-11f0-82e1-3c7c3f806d18
 
 ### Inscribir a un confirmando
-GET http://localhost:3000/confirmando/inscribir/6f6675a6-09c4-11f0-82e1-3c7c3f806d18
+POST http://localhost:3000/confirmando/inscribir/5abf4f27-6f98-42ab-aa0b-c5166b4956c7

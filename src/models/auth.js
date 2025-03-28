@@ -1,6 +1,7 @@
 import { Connection } from "../config/connection.js"
 import { ConfirmacionModel } from "./confirmacion.js";
 import { randomUUID } from "node:crypto"
+import bcrypt from "bcrypt"
 
 const confirmacionModel = new ConfirmacionModel()
 
@@ -10,8 +11,15 @@ export class AuthModel extends Connection {
   }
 
   async login (inputs) {
-    const [users] = await this.db.query("SELECT *, BIN_TO_UUID(id) as id FROM users WHERE email = ? AND password = ?", [inputs.email, inputs.password])
-    if(users.length > 0) return {message: "Login exitoso"}
+    const [users] = await this.db.query("SELECT password, email, BIN_TO_UUID(id) as id FROM users WHERE email = ?", [inputs.email])
+
+    if(users.length == 0) return {error: 'Correo o contraseña incorrectos, si no tienes una cuenta ponte en contacto con algun catequista de tu parroquia'}
+    
+    const user = users[0]
+
+    const isValidPassword = await bcrypt.compare(inputs.password, user.password)
+
+    if(isValidPassword) return {message: "Login exitoso"}
     else return {error: 'Correo o contraseña incorrectos'}
   }
 
@@ -36,25 +44,24 @@ export class AuthModel extends Connection {
       VALUES (UUID_TO_BIN(?),?, ?, ?, UPPER(?), ?, ?, ?, ?);`, 
       [userId,inputs.nombre, inputs.apellido, inputs.email, inputs.cedula, inputs.phone, "CONFIRMANDO", inputs.born_date, inputs.id_parroquia])
 
+    const confirmandoId = randomUUID();
     // Creando el confirmando
     await this.db.query(`INSERT INTO confirmandos 
-      (user_id, id_confirmacion, primera_comunion) 
-      VALUES (UUID_TO_BIN(?), UUID_TO_BIN(?), ?)`,
-      [userId, confirmacion.id, inputs.primera_comunion]
+      (id,user_id, id_confirmacion, primera_comunion) 
+      VALUES (UUID_TO_BIN(?),UUID_TO_BIN(?), UUID_TO_BIN(?), ?)`,
+      [confirmandoId,userId, confirmacion.id, inputs.primera_comunion]
     )
     
-    return {message: "Confirmando registrado exitosamente"}
+    return {message: "Confirmando registrado exitosamente", id_confirmando: confirmandoId}
   }
 
   async registrarCatequista (inputs) {
     // Validando que no exista un usuario con el correo recibido
     const [email] = await this.db.query("SELECT * FROM users WHERE LOWER(email) = ?", [inputs.email.toLowerCase()])
-    console.log('email: ',email.length > 0)
     if(email.length > 0) return {error: "Ya existe un usuario con este correo electronico"}
 
     // Validando que no exista un usuario con la cedula recibida
     const [cedula] = await this.db.query("SELECT * FROM users WHERE cedula = ?", [inputs.cedula])
-    console.log('cedula: ',cedula)
     if(cedula.length > 0) return {error: "Ya existe un usuario con este cedula"}
 
     // Creando el usuario

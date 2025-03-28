@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "email": "josbertjg@gmail.com",
-  "password": "12345678"
+  "password": "29026225"
 }
 
 ### Create un confirmando
@@ -14,7 +14,7 @@ Content-Type: application/json
 {
   "nombre": "Josbert",
   "apellido": "Guedez",
-  "email": "josbertjg@gmail.com",
+  "email": "josbertmora@gmail.com",
   "phone": "04145598216",
   "born_date": "2001-10-12",
   "id_parroquia": 40,

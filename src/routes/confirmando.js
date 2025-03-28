@@ -5,6 +5,6 @@ export const confirmandoRouter = Router();
 
 confirmandoRouter.get("/", ConfirmandoController.getAll)
 confirmandoRouter.get("/:id", ConfirmandoController.getById)
-confirmandoRouter.get("/inscribir/:id", ConfirmandoController.inscribir)
+confirmandoRouter.post("/inscribir/:id", ConfirmandoController.inscribir)
 
 

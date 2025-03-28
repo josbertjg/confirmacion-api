@@ -6,9 +6,7 @@ export class CatequesisModel extends Connection {
   }
 
   async getAll () {
-    // console.log(this.db)
     const result = await this.db.query("SELECT * FROM catequesis")
-    console.log(result)
     return []
   }
 

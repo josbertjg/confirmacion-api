@@ -1,4 +1,5 @@
 import { Connection } from "../config/connection.js"
+import bcrypt from "bcrypt"
 
 export class CatequistaModel extends Connection {
   constructor() {
@@ -24,8 +25,9 @@ export class CatequistaModel extends Connection {
     const [infoCatequista] = await this.db.query(`SELECT cedula FROM users WHERE id = UUID_TO_BIN(?);`, [id])
     const [{cedula}] = infoCatequista
     const cedulaSinChar = Array.from(cedula).slice(1).join('')
-    
-    await this.db.query(`UPDATE users SET password = ? WHERE id = UUID_TO_BIN(?);`, [cedulaSinChar,id])
+    const hashedPassword = await bcrypt.hash(cedulaSinChar, 10);
+
+    await this.db.query(`UPDATE users SET password = ? WHERE id = UUID_TO_BIN(?);`, [hashedPassword,id])
 
     return {message: "Catequista activado exitosamente"};
   }

@@ -26,8 +26,9 @@ export class ConfirmandoController {
   static async inscribir (req, res) {
     try{
       const {id} = req.params
-      const confirmando = await confirmandoModel.inscribir({id})
-      res.json({data: confirmando})
+      const response = await confirmandoModel.inscribir({id})
+      if(!!response.error) return res.status(400).json({error: response.error})
+      else return res.json({data: response})
     }catch(e){
       ServerErrorHandler({error: e, res})
     }
