@@ -1,29 +1,26 @@
 import { Connection } from "../config/connection"
+import { Catequesis } from "../schemas/catequesis"
 
-export class CatequesisModel extends Connection {
-  constructor() {
-    super(); // Llama al constructor de la clase padre (Connection)
+export class CatequesisModel  {
+  static async getAll (): Promise<Catequesis[]> {
+    const [catequesis] = await Connection.query<Catequesis[]>("SELECT * FROM catequesis")
+    return catequesis
   }
 
-  async getAll () {
-    const result = await this.db.query("SELECT * FROM catequesis")
-    return result
-  }
-
-  async getById ({id}: any) {
+  static async getById ({id}: any) {
     return id
   }
 
-  async create (data: any) {
-    const result = await this.db.query("INSERT INTO catequesis (title, fecha, hora_inicio, hora_fin, descripcion_catequistas, descripcion, type, )")
+  static async create (data: any) {
+    const result = await Connection.query("INSERT INTO catequesis (title, fecha, hora_inicio, hora_fin, descripcion_catequistas, descripcion, type, )")
     return result
   }
 
-  async update (data: any) {
+  static async update (data: any) {
     return data
   }
 
-  async delete (id: any) {
+  static async delete (id: any) {
     return id
   }
 }

@@ -1,34 +1,53 @@
 import { Request, Response } from "express"
 import { CatequesisModel } from "../models/catequesis"
-
-const catequesisModel = new CatequesisModel()
+import { GlobalErrorHandler } from "../utils/error.handler"
 
 export class CatequesisController {
   static async getAll (_req: Request, res: Response) {
-    await catequesisModel.getAll()
-    res.json({data: "catequesis /"})
+    try{
+      await CatequesisModel.getAll()
+      res.json({data: "catequesis /"})
+    }catch(e) {
+      GlobalErrorHandler(e, res)
+    }
   }
 
   static async getById (req: Request, res: Response) {
-    const {id} = req.params
-    await catequesisModel.getById({id})
-    res.json({data:"Catequesis id", id})
+    try{
+      const {id} = req.params
+      await CatequesisModel.getById({id})
+      res.json({data:"Catequesis id", id})
+    }catch(e) {
+      GlobalErrorHandler(e, res)
+    }
   }
 
   static async create (req: Request, res: Response) {
-    await catequesisModel.create(req.body)
-    res.json({data:"Catequesis post", body: req.body})
+    try{
+      await CatequesisModel.create(req.body)
+      res.json({data:"Catequesis post", body: req.body})
+    }catch(e) {
+      GlobalErrorHandler(e, res)
+    }
   }
 
   static async update (req: Request, res: Response) {
-    const {id} = req.params
-    await catequesisModel.update(req.body)
-    res.json({data:"Catequesis put", id})
+    try{
+      const {id} = req.params
+      await CatequesisModel.update(req.body)
+      res.json({data:"Catequesis put", id})
+    }catch(e) {
+      GlobalErrorHandler(e, res)
+    }
   }
 
   static async delete (req: Request, res: Response) {
-    const {id} = req.params
-    await catequesisModel.delete(id)
-    res.json({data:"Catequesis delete", id})
+    try{
+      const {id} = req.params
+      await CatequesisModel.delete(id)
+      res.json({data:"Catequesis delete", id})
+    }catch(e) {
+      GlobalErrorHandler(e, res)
+    }
   }
 }

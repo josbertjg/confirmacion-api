@@ -20,6 +20,7 @@ export const publicUserSchema = userSchema.omit({password: true})
 
 export type User = z.infer<typeof userSchema>;
 export type PublicUser = z.infer<typeof publicUserSchema>;
+export type role = "ADMIN" | "CATEQUISTA" | "CONFIRMANDO" | "COORDINADOR" | "AUXILIAR";
 
 export function returnPublicUsers(users: User | User[]) {
   if(Array.isArray(users)) return users.map(user => publicUserSchema.parse(user))

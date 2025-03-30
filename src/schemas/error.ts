@@ -1,0 +1,1 @@
+export type Errors = 'ServerError' | 'ValidationError' | 'AuthError' | 'NotFoundError' | 'ConnectionError';

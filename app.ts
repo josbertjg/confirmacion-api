@@ -7,12 +7,15 @@ import { confirmacionRouter } from "./src/routes/confirmacion";
 import { confirmandoRouter } from "./src/routes/confirmando";
 import { catequistaRouter } from "./src/routes/catequista";
 import { userRouter } from "./src/routes/user";
+import { ErrorsCatcherMiddleware } from "./src/middlewares/errors.catcher";
 
 const app:Application = express();
 
 app.disable("x-powered-by")
 
 app.use(express.json())
+
+app.use(ErrorsCatcherMiddleware)
 app.use(corsMiddleware())
 
 app.use("/auth", authRouter)

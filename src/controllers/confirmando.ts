@@ -1,37 +1,34 @@
 import { Request, Response } from "express"
 import { ConfirmandoModel } from "../models/confirmando"
-import { ServerErrorHandler } from "../utils/error.handler"
-
-const confirmandoModel = new ConfirmandoModel()
+import { GlobalErrorHandler } from "../utils/error.handler"
 
 export class ConfirmandoController {
   static async getAll (req: Request, res: Response) {
     try{
-      const [confirmando] = await confirmandoModel.getAll()
+      const confirmando = await ConfirmandoModel.getAll()
       res.json({data: confirmando})
     }catch(e){
-      ServerErrorHandler({error: e, res})
+      GlobalErrorHandler(e, res)
     }
   }
 
   static async getById (req: Request, res: Response) {
     try{
       const {id} = req.params
-      const confirmando = await confirmandoModel.getById({id})
+      const confirmando = await ConfirmandoModel.getById({id})
       res.json({data: confirmando})
     }catch(e){
-      ServerErrorHandler({error: e, res})
+      GlobalErrorHandler(e, res)
     }
   }
 
   static async inscribir (req: Request, res: Response) {
     try{
       const {id} = req.params
-      const response = await confirmandoModel.inscribir({id})
-      if(!!response.error) res.status(400).json({error: response.error})
-      else res.json({data: response})
+      const response = await ConfirmandoModel.inscribir({id})
+      res.json({data: response})
     }catch(e){
-      ServerErrorHandler({error: e, res})
+      GlobalErrorHandler(e, res)
     }
   }
 }

@@ -2,50 +2,47 @@ import { AuthModel } from "../models/auth"
 import { validateInputConfirmando } from "../schemas/confirmando"
 import { validateUserLogin } from "../schemas/login"
 import { validateCatequistaRegister } from "../schemas/catequista"
-import { ErrorInputsHandler, ServerErrorHandler } from "../utils/error.handler"
+import { GlobalErrorHandler } from "../utils/error.handler"
 import { Request, Response } from "express"
-
-const authModel = new AuthModel()
+import { ValidationError } from "../utils/errors"
 
 export class AuthController {
   static async login (req: Request, res: Response) {
     try{
       const validation = await validateUserLogin(req.body)
-      if(!validation.success) res.status(400).json(ErrorInputsHandler(validation.error))
+      if(!validation.success) throw new ValidationError({errors: validation.error})
   
-      const result = await authModel.login(req.body)
-      if(!!result.error) res.status(400).json({error: result.error})
+      const result = await AuthModel.login(req.body)
         
       res.json({data: result})
     }catch(e){
-      ServerErrorHandler({error: e, res})
+      GlobalErrorHandler(e, res)
     }
   }
 
   static async registrarConfirmando (req: Request, res: Response) {
     try{
       const validation = await validateInputConfirmando(req.body)
-      if(!validation.success) res.status(400).json(ErrorInputsHandler(validation.error))
+      if(!validation.success) throw new ValidationError({errors: validation.error})
   
-      const result = await authModel.registrarConfirmando(req.body)
-      if(!!result.error) res.status(400).json({error: result.error})
+      const result = await AuthModel.registrarConfirmando(req.body)
 
       res.json({data: result})
     }catch(e){
-      ServerErrorHandler({error: e, res})
+      GlobalErrorHandler(e, res)
     }
   }
 
   static async registrarCatequista (req: Request, res: Response) {
     try{
       const validation = await validateCatequistaRegister(req.body)
-      if(!validation.success) res.status(400).json(ErrorInputsHandler(validation.error))
+      if(!validation.success) throw new ValidationError({errors: validation.error})
   
-      const result = await authModel.registrarCatequista(req.body)
-      if(!!result.error) res.status(400).json({error: result.error})
+      const result = await AuthModel.registrarCatequista(req.body)
+
       res.json({data: result})
     }catch(e){
-      ServerErrorHandler({error: e, res})
+      GlobalErrorHandler(e, res)
     }
   }
 }
