@@ -23,7 +23,7 @@ export class CatequistaController {
   static async activate (req: Request, res: Response) {
     try{
       const {id} = req.params
-      const result = await CatequistaModel.activate({id})
+      const result = await CatequistaModel.activate({user_id: id})
       res.json({data: result})
     }catch(e){
       GlobalErrorHandler(e, res)

@@ -31,11 +31,11 @@ export class Connection {
     }
   }
 
-  public static async query<T = any>(query: string, params: any[] = []): Promise<T[]> {
+  public static async query<T = any>(query: string, params: any[] = []): Promise<T> {
     const pool = Connection.getPool();
     const conn = await pool.getConnection();
     try {
-      const [rows] = await conn.query<T[] & RowDataPacket[]>(query, params);
+      const [rows] = await conn.query<T & RowDataPacket[]>(query, params);
       return rows;
     } catch (e) {
       console.error("Error en la consulta SQL:", e);

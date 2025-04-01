@@ -28,11 +28,11 @@ export class AuthModel {
     const confirmacion = await ConfirmacionModel.getConfirmacionInscribiendoActual({id_parroquia: inputs.id_parroquia})
 
     // Validando que no exista un usuario con el correo recibido
-    const [email] = await Connection.query<User[]>("SELECT * FROM users WHERE LOWER(email) = ?", [inputs.email.toLowerCase()])
+    const email = await Connection.query<User[]>("SELECT * FROM users WHERE LOWER(email) = ?", [inputs.email.toLowerCase()])
     if(email.length > 0) throw new ValidationError({message: "Ya existe un usuario con este correo electronico"})
 
     // Validando que no exista un usuario con la cedula recibida
-    const [cedula] = await Connection.query<User[]>("SELECT * FROM users WHERE cedula = ?", [inputs.cedula])
+    const cedula = await Connection.query<User[]>("SELECT * FROM users WHERE cedula = ?", [inputs.cedula])
     if(cedula.length > 0) throw new ValidationError({message: "Ya existe un usuario con este cedula"})
 
     // Creando el usuario
@@ -55,11 +55,11 @@ export class AuthModel {
 
   static async registrarCatequista (inputs: InputRegisterCatequista) {
     // Validando que no exista un usuario con el correo recibido
-    const [email] = await Connection.query<User[]>("SELECT * FROM users WHERE LOWER(email) = ?", [inputs.email.toLowerCase()])
+    const email = await Connection.query<User[]>("SELECT * FROM users WHERE LOWER(email) = ?", [inputs.email.toLowerCase()])
     if(email.length > 0) throw new ValidationError({message: "Ya existe un usuario con este correo electronico"})
 
     // Validando que no exista un usuario con la cedula recibida
-    const [cedula] = await Connection.query<User[]>("SELECT * FROM users WHERE cedula = ?", [inputs.cedula])
+    const cedula = await Connection.query<User[]>("SELECT * FROM users WHERE cedula = ?", [inputs.cedula])
     if(cedula.length > 0) throw new ValidationError({message: "Ya existe un usuario con este cedula"})
 
     // Creando el usuario

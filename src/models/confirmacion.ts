@@ -4,12 +4,12 @@ import { NotFoundError } from "../utils/errors";
 
 export class ConfirmacionModel {
   static async getAll (): Promise<Confirmacion[]> {
-    const [confirmaciones] = await Connection.query<Confirmacion[]>(`SELECT *, BIN_TO_UUID(id) as id FROM confirmaciones;`)
+    const confirmaciones = await Connection.query<Confirmacion[]>(`SELECT *, BIN_TO_UUID(id) as id FROM confirmaciones;`)
     return confirmaciones
   }
 
   static async getConfirmacionInscribiendoActual ({id_parroquia}: { id_parroquia: number }) {
-    const [confirmacion] = await Connection.query<Confirmacion[]>(`SELECT *, BIN_TO_UUID(id) as id FROM confirmaciones WHERE 
+    const confirmacion = await Connection.query<Confirmacion[]>(`SELECT *, BIN_TO_UUID(id) as id FROM confirmaciones WHERE 
       inscribiendo = 1 AND
       activo = 1 AND
       id_parroquia = ?;`, 

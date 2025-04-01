@@ -3,7 +3,7 @@ import { returnPublicUsers, User } from "../schemas/user";
 
 export class UserModel {
   static async getAll () {
-    const [users] = await Connection.query<User[]>(`SELECT *, BIN_TO_UUID(id) as id FROM users;`)
+    const users = await Connection.query<User[]>(`SELECT *, BIN_TO_UUID(id) as id FROM users;`)
     const formattedUsers = returnPublicUsers(users)
     return formattedUsers
   }

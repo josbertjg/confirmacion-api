@@ -3,7 +3,7 @@ import { Catequesis } from "../schemas/catequesis"
 
 export class CatequesisModel  {
   static async getAll (): Promise<Catequesis[]> {
-    const [catequesis] = await Connection.query<Catequesis[]>("SELECT * FROM catequesis")
+    const catequesis = await Connection.query<Catequesis[]>("SELECT * FROM catequesis")
     return catequesis
   }
 

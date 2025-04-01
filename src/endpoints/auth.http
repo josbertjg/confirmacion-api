@@ -14,11 +14,11 @@ Content-Type: application/json
 {
   "nombre": "Josbert",
   "apellido": "Guedez",
-  "email": "josbertmora@gmail.com",
+  "email": "josbertconfirmando@gmail.com",
   "phone": "04145598216",
   "born_date": "2001-10-12",
   "id_parroquia": 40,
-  "cedula": "V28150010",
+  "cedula": "V281500",
   "primera_comunion": true
 }
 
@@ -29,7 +29,7 @@ Content-Type: application/json
 {
   "nombre": "Josbert",
   "apellido": "Guedez",
-  "email": "josbertmora@gmail.com",
+  "email": "josbertcatequista@gmail.com",
   "phone": "04145598216",
   "born_date": "2001-10-12",
   "id_parroquia": 40,

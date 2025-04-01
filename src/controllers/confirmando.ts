@@ -25,7 +25,7 @@ export class ConfirmandoController {
   static async inscribir (req: Request, res: Response) {
     try{
       const {id} = req.params
-      const response = await ConfirmandoModel.inscribir({id})
+      const response = await ConfirmandoModel.inscribir({id_confirmando: id})
       res.json({data: response})
     }catch(e){
       GlobalErrorHandler(e, res)
