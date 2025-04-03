@@ -1,6 +1,7 @@
 ### User Login
 POST http://localhost:3000/auth/login
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3YmEwMTM1LTBiZGUtMTFmMC05MGZmLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJDQVRFUVVJU1RBIiwiaWF0IjoxNzQzNjQxNTcxLCJleHAiOjE3NDM2NDUxNzF9.IF37pGYPZehyQOJs1nC7Cy8WMSxRJr7newAX2CZS5N0
 
 {
   "email": "josbertjg@gmail.com",
@@ -35,3 +36,5 @@ Content-Type: application/json
   "id_parroquia": 40,
   "cedula": "V29624809"
 }
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3YmEwMTM1LTBiZGUtMTFmMC05MGZmLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJDQVRFUVVJU1RBIiwiaWF0IjoxNzQzNjQxNTcxLCJleHAiOjE3NDM2NDUxNzF9.IF37pGYPZehyQOJs1nC7Cy8WMSxRJr7newAX2CZS5N0

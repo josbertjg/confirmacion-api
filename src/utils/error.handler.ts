@@ -1,5 +1,6 @@
 import { Response } from "express"
 import { ServerError, ValidationError, AuthError, NotFoundError, ConnectionError } from "./errors"
+import { JsonWebTokenError } from "jsonwebtoken"
 
 export const GlobalErrorHandler = (
   e: typeof ValidationError | 
@@ -23,6 +24,7 @@ export const GlobalErrorHandler = (
   if(e instanceof ConnectionError) return res.status(500).json({error: e.message})
 
   if(e instanceof AuthError) return res.status(401).json({error: e.message})
+  if(e instanceof JsonWebTokenError) return res.status(401).json({error: "No autorizado."})
 
   if(e instanceof NotFoundError) return res.status(404).json({error: e.message})
   

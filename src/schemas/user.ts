@@ -16,11 +16,12 @@ export const userSchema = z.object({
   id_ubicacion: z.number().optional().nullable(),
   id_parroquia: z.number().int(),
 });
+export const roleSchema = userSchema.pick({role: true})
 export const publicUserSchema = userSchema.omit({password: true})
 
 export type User = z.infer<typeof userSchema>;
 export type PublicUser = z.infer<typeof publicUserSchema>;
-export type role = "ADMIN" | "CATEQUISTA" | "CONFIRMANDO" | "COORDINADOR" | "AUXILIAR";
+export type Role = z.infer<typeof userSchema.shape.role>;
 
 export function returnPublicUsers(users: User | User[]) {
   if(Array.isArray(users)) return users.map(user => publicUserSchema.parse(user))

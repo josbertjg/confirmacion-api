@@ -7,10 +7,11 @@ import { User } from "../schemas/user";
 import { InputRegisterConfirmando } from "../schemas/confirmando";
 import { InputRegisterCatequista } from "../schemas/catequista";
 import { ValidationError } from "../utils/errors";
+import { generateToken } from "../utils/token";
 
 export class AuthModel {
   static async login (inputs: InputLogin) {
-    const users = await Connection.query("SELECT password, email, BIN_TO_UUID(id) as id FROM users WHERE email = ?", [inputs.email])
+    const users = await Connection.query("SELECT password, email, role, BIN_TO_UUID(id) as id FROM users WHERE email = ?", [inputs.email])
 
     if(users.length == 0) throw new ValidationError({message: 'Correo o contraseña incorrectos, si no tienes una cuenta ponte en contacto con algun catequista de tu parroquia'})
     
@@ -18,7 +19,7 @@ export class AuthModel {
 
     const isValidPassword = await bcrypt.compare(inputs.password, user.password)
 
-    if(isValidPassword) return {message: "Login exitoso"}
+    if(isValidPassword) return {message: "Login exitoso", access_token: generateToken({id: user.id, role: user.role})}
     else throw new ValidationError({message: 'Correo o contraseña incorrectos'})
   }
 

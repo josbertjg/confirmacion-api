@@ -1,10 +1,11 @@
 import { Router } from "express";
 import { ConfirmandoController } from "../controllers/confirmando"
+import { AuthMiddleware } from "../middlewares/auth";
 
 export const confirmandoRouter = Router();
 
-confirmandoRouter.get("/", ConfirmandoController.getAll)
-confirmandoRouter.get("/:id", ConfirmandoController.getById)
-confirmandoRouter.post("/inscribir/:id", ConfirmandoController.inscribir)
+confirmandoRouter.get("/", AuthMiddleware(["COORDINADOR", "CATEQUISTA", "AUXILIAR"]), ConfirmandoController.getAll)
+confirmandoRouter.get("/:id", AuthMiddleware(["ADMIN"]), ConfirmandoController.getById)
+confirmandoRouter.post("/inscribir/:id", AuthMiddleware(["COORDINADOR"]), ConfirmandoController.inscribir)
 
 
