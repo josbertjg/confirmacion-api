@@ -8,6 +8,7 @@ import { confirmandoRouter } from "./src/routes/confirmando";
 import { catequistaRouter } from "./src/routes/catequista";
 import { userRouter } from "./src/routes/user";
 import { ErrorsCatcherMiddleware } from "./src/middlewares/errors.catcher";
+import { API_PORT } from "./src/config/config";
 
 const app:Application = express();
 
@@ -26,7 +27,6 @@ app.use("/confirmando", confirmandoRouter)
 app.use("/catequista", catequistaRouter)
 app.use("/user", userRouter)
  
-const PORT = process.env.PROT ?? 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(API_PORT, () => {
+  console.log(`Server running on port ${API_PORT}`);
 })

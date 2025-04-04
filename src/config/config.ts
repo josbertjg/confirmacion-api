@@ -1,4 +1,7 @@
 export const {
+  // API
+  API_PORT = 3000,
+  
   // SQL
   PORT = 3306,
   HOST = "localhost",
@@ -18,6 +21,7 @@ export const {
 
   // JWT
   SECRET_JWT_KEY = "secret_key",
+  SECRET_JWT_REFRESH_KEY = "secret_refresh_key",
 } = process.env
 
 export const DBConfig = {

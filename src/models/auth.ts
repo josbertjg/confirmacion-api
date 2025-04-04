@@ -7,20 +7,33 @@ import { User } from "../schemas/user";
 import { InputRegisterConfirmando } from "../schemas/confirmando";
 import { InputRegisterCatequista } from "../schemas/catequista";
 import { ValidationError } from "../utils/errors";
-import { generateToken } from "../utils/token";
+import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from "../utils/token";
 
 export class AuthModel {
   static async login (inputs: InputLogin) {
-    const users = await Connection.query("SELECT password, email, role, BIN_TO_UUID(id) as id FROM users WHERE email = ?", [inputs.email])
+    const users = await Connection.query<User[]>("SELECT *, BIN_TO_UUID(id) as id FROM users WHERE email = ?", [inputs.email])
 
     if(users.length == 0) throw new ValidationError({message: 'Correo o contraseña incorrectos, si no tienes una cuenta ponte en contacto con algun catequista de tu parroquia'})
     
     const user = users[0]
 
+    if(user.password == null || !user.password) throw new ValidationError({message: 'Correo o contraseña incorrectos, es probable que tu usuario se encuentre inactivo, ponte en contacto con los catequistas de tu parroquia'})
+    
     const isValidPassword = await bcrypt.compare(inputs.password, user.password)
 
-    if(isValidPassword) return {message: "Login exitoso", access_token: generateToken({id: user.id, role: user.role})}
+    if(isValidPassword) return {message: "Login exitoso", access_token: generateAccessToken({id: user.id, role: user.role}), refresh_token: generateRefreshToken({id: user.id, role: user.role})}
     else throw new ValidationError({message: 'Correo o contraseña incorrectos'})
+  }
+
+  static async refreshToken(refreshToken: string) {
+    const refreshData = verifyRefreshToken(refreshToken)
+    const users = await Connection.query<User[]>("SELECT *, BIN_TO_UUID(id) as id FROM users WHERE id = UUID_TO_BIN(?)", [refreshData.id])
+
+    if(users.length == 0) throw new ValidationError({message: "Algo ha ido mal"})
+
+    const user = users[0]
+
+    return generateAccessToken({id: user.id, role: user.role})
   }
 
   static async registrarConfirmando (inputs: InputRegisterConfirmando) {
