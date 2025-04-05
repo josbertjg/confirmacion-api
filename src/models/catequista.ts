@@ -15,6 +15,11 @@ export class CatequistaModel {
     return catequista;
   }
 
+  static async getByUserId ({id}: {id: string}): Promise<Catequista> {
+    const [catequista] = await Connection.query<Catequista[]>(`SELECT *, BIN_TO_UUID(id) as id, BIN_TO_UUID(user_id) as user_id FROM catequistas WHERE user_id = UUID_TO_BIN(?);`, [id])
+    return catequista;
+  }
+
   static async activate ({user_id}: {user_id: string}) {
     const users = await Connection.query<User[]>(`SELECT * FROM users WHERE id = UUID_TO_BIN(?) AND role = "CATEQUISTA";`, [user_id])
 

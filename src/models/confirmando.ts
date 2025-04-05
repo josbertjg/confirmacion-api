@@ -13,6 +13,11 @@ export class ConfirmandoModel {
     return confirmando;
   }
 
+  static async getByUserId ({id}: {id: string}): Promise<Confirmando> {
+    const [confirmando] = await Connection.query<Confirmando[]>(`SELECT *, BIN_TO_UUID(id) as id, BIN_TO_UUID(id_confirmacion) as id_confirmacion, BIN_TO_UUID(user_id) as user_id FROM confirmandos WHERE user_id = UUID_TO_BIN(?);`, [id])
+    return confirmando;
+  }
+
   static async inscribir ({id_confirmando}: {id_confirmando: string}) {
     const confirmandoInscrito = await Connection.query(`
       SELECT c.inscrito, u.nombre, u.apellido, u.cedula, BIN_TO_UUID(u.id) as user_id

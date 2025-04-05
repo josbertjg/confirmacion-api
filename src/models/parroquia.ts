@@ -7,7 +7,7 @@ export class ParroquiaModel {
     return parroquias
   }
 
-  static async getById ({id}: any): Promise<Parroquia> {
+  static async getById ({id}: {id: number}): Promise<Parroquia> {
     const [parroquia] = await Connection.query<Parroquia[]>(`SELECT * FROM parroquias WHERE id = ?;`, [id])
     return parroquia;
   }

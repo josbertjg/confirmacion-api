@@ -1,7 +1,16 @@
 ### User Login
 POST http://localhost:3000/auth/login
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3YmEwMTM1LTBiZGUtMTFmMC05MGZmLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJDQVRFUVVJU1RBIiwiaWF0IjoxNzQzNjQxNTcxLCJleHAiOjE3NDM2NDUxNzF9.IF37pGYPZehyQOJs1nC7Cy8WMSxRJr7newAX2CZS5N0
+
+{
+  "email": "josbertjg@gmail.com",
+  "password": "29026225"
+}
+
+### Refresh token
+POST http://localhost:3000/auth/refresh-token
+Content-Type: application/json
+Refresh: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDg3ZTFhLTEwZjgtMTFmMC05MzMxLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJDQVRFUVVJU1RBIiwiaWF0IjoxNzQzNzk4Nzk0LCJleHAiOjE3NDUwOTQ3OTR9.da-PNZPhp7_qMjQlJ8z8koj9dimkzAStH-fbDjy4irM
 
 {
   "email": "josbertjg@gmail.com",
@@ -15,11 +24,11 @@ Content-Type: application/json
 {
   "nombre": "Josbert",
   "apellido": "Guedez",
-  "email": "josbertconfirmando@gmail.com",
+  "email": "josbertjg@gmail.com",
   "phone": "04145598216",
   "born_date": "2001-10-12",
   "id_parroquia": 40,
-  "cedula": "V281500",
+  "cedula": "V28150010",
   "primera_comunion": true
 }
 
@@ -30,11 +39,9 @@ Content-Type: application/json
 {
   "nombre": "Josbert",
   "apellido": "Guedez",
-  "email": "josbertcatequista@gmail.com",
+  "email": "josbertmora@gmail.com",
   "phone": "04145598216",
   "born_date": "2001-10-12",
   "id_parroquia": 40,
   "cedula": "V29624809"
 }
-
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3YmEwMTM1LTBiZGUtMTFmMC05MGZmLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJDQVRFUVVJU1RBIiwiaWF0IjoxNzQzNjQxNTcxLCJleHAiOjE3NDM2NDUxNzF9.IF37pGYPZehyQOJs1nC7Cy8WMSxRJr7newAX2CZS5N0

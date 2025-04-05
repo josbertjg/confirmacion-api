@@ -9,6 +9,9 @@ import { catequistaRouter } from "./src/routes/catequista";
 import { userRouter } from "./src/routes/user";
 import { ErrorsCatcherMiddleware } from "./src/middlewares/errors.catcher";
 import { API_PORT } from "./src/config/config";
+import { notificationRouter } from "./src/routes/notification";
+import { ubicacionRouter } from "./src/routes/ubicacion";
+import { grupoVidaRouter } from "./src/routes/grupoVida";
 
 const app:Application = express();
 
@@ -26,6 +29,9 @@ app.use("/confirmacion", confirmacionRouter)
 app.use("/confirmando", confirmandoRouter)
 app.use("/catequista", catequistaRouter)
 app.use("/user", userRouter)
+app.use("/grupo-vida", grupoVidaRouter)
+app.use("/notification", notificationRouter)
+app.use("/ubicacion", ubicacionRouter)
  
 app.listen(API_PORT, () => {
   console.log(`Server running on port ${API_PORT}`);

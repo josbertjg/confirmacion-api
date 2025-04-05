@@ -1,12 +1,12 @@
 import { Request, Response } from "express"
-import { ParroquiaModel } from "../models/parroquia"
 import { GlobalErrorHandler } from "../utils/error.handler"
+import { UbicacionModel } from "../models/ubicacion"
 
-export class ParroquiaController {
+export class UbicacionController {
   static async getAll (req: Request, res: Response) {
     try{
-      const parroquias = await ParroquiaModel.getAll()
-      res.json({data: parroquias})
+      const grupos_vida = await UbicacionModel.getAll()
+      res.json({data: grupos_vida})
     }catch(e){
       GlobalErrorHandler(e, res)
     }
@@ -15,8 +15,8 @@ export class ParroquiaController {
   static async getById (req: Request, res: Response) {
     try{
       const {id} = req.params
-      const parroquia = await ParroquiaModel.getById({id: +id})
-      res.json({data: parroquia})
+      const grupo_vida = await UbicacionModel.getById({id: +id})
+      res.json({data: grupo_vida})
     }catch(e){
       GlobalErrorHandler(e, res)
     }

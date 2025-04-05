@@ -8,6 +8,11 @@ export class ConfirmacionModel {
     return confirmaciones
   }
 
+  static async getByConfirmandoId ({id}: { id: string }): Promise<Confirmacion> {
+    const [confirmacion] = await Connection.query<Confirmacion[]>(`SELECT *, BIN_TO_UUID(id) as id FROM confirmaciones WHERE id = UUID_TO_BIN(?);`, [id])
+    return confirmacion
+  }
+
   static async getConfirmacionInscribiendoActual ({id_parroquia}: { id_parroquia: number }) {
     const confirmacion = await Connection.query<Confirmacion[]>(`SELECT *, BIN_TO_UUID(id) as id FROM confirmaciones WHERE 
       inscribiendo = 1 AND
@@ -19,4 +24,5 @@ export class ConfirmacionModel {
 
     return confirmacion[0]
   }
+
 }

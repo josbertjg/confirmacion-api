@@ -23,7 +23,7 @@ export type User = z.infer<typeof userSchema>;
 export type PublicUser = z.infer<typeof publicUserSchema>;
 export type Role = z.infer<typeof userSchema.shape.role>;
 
-export function returnPublicUsers(users: User | User[]) {
+export function returnPublicUsers(users: User | User[]): PublicUser | PublicUser[] {
   if(Array.isArray(users)) return users.map(user => publicUserSchema.parse(user))
   else return publicUserSchema.parse(users)
 }
