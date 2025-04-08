@@ -13,7 +13,7 @@ const createErrorFactory = function (name: Errors) {
       super(message)
       this.name = name
       this.errors = errors!
-      this.stack = ""
+      //this.stack = ""
     }
   }
 }

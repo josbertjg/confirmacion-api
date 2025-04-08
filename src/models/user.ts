@@ -46,7 +46,7 @@ export class UserModel {
     if(userInfo.role === 'CONFIRMANDO') {
       confirmando_info = await ConfirmandoModel.getByUserId({id: userInfo.id})
       confirmacion = await ConfirmacionModel.getByConfirmandoId({id: confirmando_info.id_confirmacion})
-      grupos_vida = [await GrupoVidaModel.getById({id: confirmando_info.grupoVida_id})]
+      if(!!confirmando_info.grupoVida_id) grupos_vida = [await GrupoVidaModel.getById({id: confirmando_info.grupoVida_id})]
     }
 
 

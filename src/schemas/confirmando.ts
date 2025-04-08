@@ -1,16 +1,18 @@
 import z from "zod"
 import { userSchema } from "./user";
+import { grupoVidaSchema } from "./grupoVida";
+import { confirmacionSchema } from "./confirmacion";
 
 export const confirmandoSchema = z.object({
   id: z.string().uuid(),
-  inscrito: z.boolean().default(false),
-  primera_comunion: z.boolean(),
-  activo: z.boolean().default(true),
-  created_at: z.string().date(),
-  updated_at: z.string().date(),
-  grupoVida_id: z.string().uuid(),
-  user_id: z.string().uuid(),
-  id_confirmacion: z.string().uuid(),
+  inscrito: z.preprocess((value) => value === 1 ? true : value === 0 ? false : value, z.boolean().default(false)),
+  primera_comunion: z.preprocess((value) => value === 1 ? true : value === 0 ? false : value, z.boolean()),
+  activo: z.preprocess((value) => value === 1 ? true : value === 0 ? false : value, z.boolean().default(true)),
+  grupoVida_id: grupoVidaSchema.shape.id.optional().nullable(),
+  user_id: userSchema.shape.id,
+  id_confirmacion: confirmacionSchema.shape.id,
+  created_at: z.string().date().or(z.date()),
+  updated_at: z.string().date().or(z.date()),
 });
 export const publicConfirmandoSchema = confirmandoSchema.omit({user_id: true, id_confirmacion: true})
 
