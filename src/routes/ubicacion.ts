@@ -4,5 +4,10 @@ import { UbicacionController } from "../controllers/ubicacion";
 
 export const ubicacionRouter = Router();
 
-ubicacionRouter.get("/", AuthMiddleware(), UbicacionController.getAll)
+ubicacionRouter.get("/", AuthMiddleware(["COORDINADOR"]), UbicacionController.getAll)
+ubicacionRouter.post("/", AuthMiddleware(), UbicacionController.create)
+ubicacionRouter.patch("/:id", AuthMiddleware(), UbicacionController.edit)
+ubicacionRouter.delete("/:id", AuthMiddleware(), UbicacionController.delete)
+
+
 ubicacionRouter.get("/:id", AuthMiddleware(), UbicacionController.getById)

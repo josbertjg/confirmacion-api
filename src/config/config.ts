@@ -1,6 +1,9 @@
 export const {
   // API
   API_PORT = 3000,
+
+  // UPLOADS
+  PROFILE_IMG_URL = "uploads/profile",
   
   // SQL
   PORT = 3306,

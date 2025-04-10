@@ -1,0 +1,32 @@
+### Get todas las ubicacion
+GET http://localhost:3000/ubicacion
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2NDJlNDAwLTE1NGMtMTFmMC1iMzJmLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDIxNTg5NywiZXhwIjoxNzQ0MjE5NDk3fQ.c2E-yBGRbw8PxYOWvE0cuWADEfQo7SdTkbxVwnmLw-I
+
+### Get una ubicacion por id
+GET http://localhost:3000/ubicacion/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUwZGMxY2NhLTEzZWItMTFmMC1hZjE4LTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDIwNzkzOSwiZXhwIjoxNzQ0MjExNTM5fQ.xV6lYWbZPfnh1wSHKrIuwkI-_tMvs1hAYIm0iECMWag
+
+### Crear una ubicacion
+POST http://localhost:3000/ubicacion/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUwZGMxY2NhLTEzZWItMTFmMC1hZjE4LTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDIwNzkzOSwiZXhwIjoxNzQ0MjExNTM5fQ.xV6lYWbZPfnh1wSHKrIuwkI-_tMvs1hAYIm0iECMWag
+
+{
+  "address": "Carrera 13 a con calle 62 y Avda Rotaria.",
+  "latitude": "qi24u5oasgfa",
+  "longitude": "laksjf928345fw"
+}
+
+### Editar una ubicacion por id
+PATCH http://localhost:3000/ubicacion/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2NDJlNDAwLTE1NGMtMTFmMC1iMzJmLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDIxNTg5NywiZXhwIjoxNzQ0MjE5NDk3fQ.c2E-yBGRbw8PxYOWvE0cuWADEfQo7SdTkbxVwnmLw-I
+
+{
+  "address": "Tu casa o la mia"
+}
+
+
+### Eliminar una ubicacion por id
+DELETE http://localhost:3000/ubicacion/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUwZGMxY2NhLTEzZWItMTFmMC1hZjE4LTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDIwNzkzOSwiZXhwIjoxNzQ0MjExNTM5fQ.xV6lYWbZPfnh1wSHKrIuwkI-_tMvs1hAYIm0iECMWag

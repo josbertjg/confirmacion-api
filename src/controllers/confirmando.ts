@@ -1,6 +1,9 @@
 import { Request, Response } from "express"
 import { ConfirmandoModel } from "../models/confirmando"
 import { GlobalErrorHandler } from "../utils/error.handler"
+import { AuthRequest } from "../schemas/middlewares"
+import { validateAdminEditPartialConfirmando, validateEditPartialConfirmando } from "../schemas/confirmando"
+import { ValidationError } from "../utils/errors"
 
 export class ConfirmandoController {
   static async getAll (req: Request, res: Response) {
@@ -17,6 +20,24 @@ export class ConfirmandoController {
       const {id} = req.params
       const confirmando = await ConfirmandoModel.getById({id})
       res.json({data: confirmando})
+    }catch(e){
+      GlobalErrorHandler(e, res)
+    }
+  }
+
+  static async edit (req: AuthRequest, res: Response) {
+    try{
+      const {id} = req.params
+      const user = req.user!
+      let validation = null
+
+      if(user.role === "CONFIRMANDO" || user.role === "AUXILIAR") validation = await validateEditPartialConfirmando(req.body)
+      else validation = await validateAdminEditPartialConfirmando(req.body)
+
+      if(!validation.success) throw new ValidationError({errors: validation.error})
+
+      const response = await ConfirmandoModel.edit({id, data: validation.data})
+      res.json({data: response})
     }catch(e){
       GlobalErrorHandler(e, res)
     }

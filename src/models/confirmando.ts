@@ -1,7 +1,8 @@
 import { Connection } from "../config/connection"
 import bcrypt from "bcrypt"
-import { Confirmando } from "../schemas/confirmando";
+import { Confirmando, InputAdminEditConfirmando, InputEditConfirmando } from "../schemas/confirmando";
 import { NotFoundError, ValidationError } from "../utils/errors";
+import { prepareUpdateQuery } from "../utils/query";
 export class ConfirmandoModel {
   static async getAll (): Promise<Confirmando[]> {
     const confirmandos = await Connection.query<Confirmando[]>(`SELECT *, BIN_TO_UUID(id) as id, BIN_TO_UUID(id_confirmacion) as id_confirmacion, BIN_TO_UUID(user_id) as user_id FROM confirmandos;`)
@@ -11,6 +12,28 @@ export class ConfirmandoModel {
   static async getById ({id}: {id: string}): Promise<Confirmando> {
     const [confirmando] = await Connection.query<Confirmando[]>(`SELECT *, BIN_TO_UUID(id) as id, BIN_TO_UUID(id_confirmacion) as id_confirmacion, BIN_TO_UUID(user_id) as user_id FROM confirmandos WHERE id = UUID_TO_BIN(?);`, [id])
     return confirmando;
+  }
+
+  static async edit ({id, data}: {id: string, data: Partial<InputEditConfirmando & InputAdminEditConfirmando>}) {
+    // Validando que el confirmando exista
+    const confirmandos = await Connection.query<Confirmando[]>(`SELECT * FROM confirmandos WHERE id = UUID_TO_BIN(?);`, [id])
+    if(confirmandos.length === 0) throw new ValidationError({message: "Confirmando no encontrado"});
+
+    // const confirmando = confirmandos[0];
+
+    if(!!data.primera_comunion) {
+      const confirmandoUpdater = prepareUpdateQuery({tableName: "confirmandos", data: {primera_comunion: data.primera_comunion}, where: "WHERE id = UUID_TO_BIN(?);"})
+      await Connection.query(confirmandoUpdater.query, [...confirmandoUpdater.params, id])
+    }
+
+    delete data.primera_comunion
+
+    // const userUpdater = prepareUpdateQuery({tableName: "users", data, where: "WHERE id = UUID_TO_BIN(?);"})
+
+    // const {query, params} = prepareUpdateQuery({tableName: "ubicaciones", data, where: "WHERE id = ?;"})
+    // await Connection.query(query, [...params, id])
+
+    // return {message: "Ubicacion editada exitosamente"};
   }
 
   static async getByUserId ({id}: {id: string}): Promise<Confirmando> {

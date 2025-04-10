@@ -32,7 +32,7 @@ app.use("/user", userRouter)
 app.use("/grupo-vida", grupoVidaRouter)
 app.use("/notification", notificationRouter)
 app.use("/ubicacion", ubicacionRouter)
- 
+
 app.listen(API_PORT, () => {
   console.log(`Server running on port ${API_PORT}`);
 })

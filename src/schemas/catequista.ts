@@ -1,4 +1,5 @@
 import { grupoVidaSchema } from "./grupoVida";
+import { inputCreateUbicacionSchema } from "./ubicacion";
 import { userSchema } from "./user";
 import z from "zod"
 
@@ -15,7 +16,7 @@ export const inputRegisterCatequistaSchema = userSchema.pick({
   phone: true,
   born_date: true,
   id_parroquia: true
-})
+}).merge(inputCreateUbicacionSchema);
 
 export const catequistaGruposVida = z.object({
   id: z.string().uuid(),

@@ -1,8 +1,10 @@
 ### Get todas las confirmandos
 GET http://localhost:3000/confirmando
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2NDJlNDAwLTE1NGMtMTFmMC1iMzJmLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDIxNTExMSwiZXhwIjoxNzQ0MjE4NzExfQ.qwqjiSHRtpSF2i1IU-aEv51rNA9Lv8VW5JVq2m5l9-w
 
 ### Get una confirmando por id
 GET http://localhost:3000/confirmando/5abf4f27-6f98-42ab-aa0b-c5166b4956c7
 
 ### Inscribir a un confirmando
-POST http://localhost:3000/confirmando/inscribir/a90b3dc0-c542-4eec-bfee-67cd56f70ccf
+POST http://localhost:3000/confirmando/inscribir/5107a5ef-327a-4c34-8202-d822636efabe
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2NDJlNDAwLTE1NGMtMTFmMC1iMzJmLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDIxNTExMSwiZXhwIjoxNzQ0MjE4NzExfQ.qwqjiSHRtpSF2i1IU-aEv51rNA9Lv8VW5JVq2m5l9-w

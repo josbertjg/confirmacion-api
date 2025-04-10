@@ -3,14 +3,14 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-  "email": "josbertjg@gmail.com",
-  "password": "28150010"
+  "email": "josbertmora@gmail.com",
+  "password": "435434698"
 }
 
 ### Refresh token
 POST http://localhost:3000/auth/refresh-token
 Content-Type: application/json
-Refresh: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRmOTU1Y2E4LTEzZTgtMTFmMC1hZjE4LTNjN2MzZjgwNmQxOCIsInJvbGUiOiJDQVRFUVVJU1RBIiwiaWF0IjoxNzQ0MDU1MTE5LCJleHAiOjE3NDUzNTExMTl9.RT2ekt7JUg3GzU1qqsZEIPfMtbsmJSOS9Nfgd5vbOzY
+Refresh: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2NDJlNDAwLTE1NGMtMTFmMC1iMzJmLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDIxNTExMSwiZXhwIjoxNzQ1NTExMTExfQ.F4y_uy5oDlKlGy3x_6RkIOXbRVwvKOjA94USEkRQTU8
 
 {
   "email": "josbertjg@gmail.com",
@@ -29,7 +29,8 @@ Content-Type: application/json
   "born_date": "2001-10-12",
   "id_parroquia": 40,
   "cedula": "V435434698",
-  "primera_comunion": true
+  "primera_comunion": true,
+  "address": "Carrera 13 a con calle 62 y avda rotaria"
 }
 
 ### Create un catequista

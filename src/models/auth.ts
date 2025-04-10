@@ -8,6 +8,7 @@ import { InputRegisterConfirmando } from "../schemas/confirmando";
 import { InputRegisterCatequista } from "../schemas/catequista";
 import { ValidationError } from "../utils/errors";
 import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from "../utils/token";
+import { UbicacionModel } from "./ubicacion";
 
 export class AuthModel {
   static async login (inputs: InputLogin) {
@@ -49,12 +50,15 @@ export class AuthModel {
     const cedula = await Connection.query<User[]>("SELECT * FROM users WHERE cedula = ?", [inputs.cedula])
     if(cedula.length > 0) throw new ValidationError({message: "Ya existe un usuario con este cedula"})
 
+    // Ingresando/Creando la ubicacion del confirmando
+    const {id_ubicacion} = await UbicacionModel.create({address: inputs.address, latitude: inputs.latitude, longitude: inputs.longitude})
+
     // Creando el usuario
     const userId = randomUUID();
     await Connection.query(`INSERT INTO users 
-      (id, nombre, apellido, email, cedula, phone, role, born_date, id_parroquia) 
-      VALUES (UUID_TO_BIN(?),?, ?, ?, UPPER(?), ?, ?, ?, ?);`, 
-      [userId,inputs.nombre, inputs.apellido, inputs.email, inputs.cedula, inputs.phone, "CONFIRMANDO", inputs.born_date, inputs.id_parroquia])
+      (id, nombre, apellido, email, cedula, phone, role, born_date, id_ubicacion, id_parroquia) 
+      VALUES (UUID_TO_BIN(?),?, ?, ?, UPPER(?), ?, ?, ?, ?, ?);`, 
+      [userId,inputs.nombre, inputs.apellido, inputs.email, inputs.cedula, inputs.phone, "CONFIRMANDO", inputs.born_date, id_ubicacion, inputs.id_parroquia])
 
     const confirmandoId = randomUUID();
     // Creando el confirmando
@@ -76,12 +80,15 @@ export class AuthModel {
     const cedula = await Connection.query<User[]>("SELECT * FROM users WHERE cedula = ?", [inputs.cedula])
     if(cedula.length > 0) throw new ValidationError({message: "Ya existe un usuario con este cedula"})
 
+    // Ingresando/Creando la ubicacion del catequista
+    const {id_ubicacion} = await UbicacionModel.create({address: inputs.address, latitude: inputs.latitude, longitude: inputs.longitude})
+    
     // Creando el usuario
     const userId = randomUUID();
     await Connection.query(`INSERT INTO users 
-      (id, nombre, apellido, email, cedula, phone, role, born_date, id_parroquia) 
-      VALUES (UUID_TO_BIN(?),?, ?, ?, UPPER(?), ?, ?, ?, ?);`, 
-      [userId,inputs.nombre, inputs.apellido, inputs.email, inputs.cedula, inputs.phone, "CATEQUISTA", inputs.born_date, inputs.id_parroquia])
+      (id, nombre, apellido, email, cedula, phone, role, born_date, id_ubicacion, id_parroquia) 
+      VALUES (UUID_TO_BIN(?),?, ?, ?, UPPER(?), ?, ?, ?, ?, ?);`, 
+      [userId,inputs.nombre, inputs.apellido, inputs.email, inputs.cedula, inputs.phone, "CATEQUISTA", inputs.born_date, id_ubicacion, inputs.id_parroquia])
     return {message: "Catequista registrado exitosamente"}
   }
 }
