@@ -1,10 +1,20 @@
 ### Get todas las confirmandos
 GET http://localhost:3000/confirmando
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2NDJlNDAwLTE1NGMtMTFmMC1iMzJmLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDIxNTExMSwiZXhwIjoxNzQ0MjE4NzExfQ.qwqjiSHRtpSF2i1IU-aEv51rNA9Lv8VW5JVq2m5l9-w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUzNzVmOWI4LTE3MGYtMTFmMC1hNzNhLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDY1MTg2NywiZXhwIjoxNzQ0NjU1NDY3fQ.al5QGst3nUKg8QV-8K6ihepfxiMR7ccvtybb5WJI7mo
 
-### Get una confirmando por id
-GET http://localhost:3000/confirmando/5abf4f27-6f98-42ab-aa0b-c5166b4956c7
+### Get un confirmando por id
+GET http://localhost:3000/confirmando/95f7066f-a2d9-4281-bc84-155803043b39
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUzNzVmOWI4LTE3MGYtMTFmMC1hNzNhLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDY1MTg2NywiZXhwIjoxNzQ0NjU1NDY3fQ.al5QGst3nUKg8QV-8K6ihepfxiMR7ccvtybb5WJI7mo
+
+### Editar a un confirmando
+PUT http://localhost:3000/confirmando/95f7066f-a2d9-4281-bc84-155803043b39
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUzNzVmOWI4LTE3MGYtMTFmMC1hNzNhLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDY0NjU1MywiZXhwIjoxNzQ0NjUwMTUzfQ.QGl4jTjzRBddQjHA2sQrDuhdyR4AStAKXsYNCAGkYL8
+
+{
+  
+}
 
 ### Inscribir a un confirmando
-POST http://localhost:3000/confirmando/inscribir/5107a5ef-327a-4c34-8202-d822636efabe
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2NDJlNDAwLTE1NGMtMTFmMC1iMzJmLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDIxNTExMSwiZXhwIjoxNzQ0MjE4NzExfQ.qwqjiSHRtpSF2i1IU-aEv51rNA9Lv8VW5JVq2m5l9-w
+POST http://localhost:3000/confirmando/inscribir/95f7066f-a2d9-4281-bc84-155803043b39
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUzNzVmOWI4LTE3MGYtMTFmMC1hNzNhLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDY0NjU1MywiZXhwIjoxNzQ0NjUwMTUzfQ.QGl4jTjzRBddQjHA2sQrDuhdyR4AStAKXsYNCAGkYL8

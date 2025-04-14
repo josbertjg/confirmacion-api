@@ -8,7 +8,6 @@ export const prepareUpdateQuery = ({tableName, data, where}: UpdateQueryProps): 
   let query: string = "UPDATE " + tableName + " SET ";
   let params: any[] = [];
 
-  console.log(data)
   const entries = Object.entries(data);
   entries.forEach(([key, value], index) => {
     query += `${key} = ?`;

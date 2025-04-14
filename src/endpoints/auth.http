@@ -4,13 +4,13 @@ Content-Type: application/json
 
 {
   "email": "josbertadmin@gmail.com",
-  "password": "2815001"
+  "password": "28150010"
 }
 
 ### Refresh token
 POST http://localhost:3000/auth/refresh-token
 Content-Type: application/json
-Refresh: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2NDJlNDAwLTE1NGMtMTFmMC1iMzJmLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDIxNTExMSwiZXhwIjoxNzQ1NTExMTExfQ.F4y_uy5oDlKlGy3x_6RkIOXbRVwvKOjA94USEkRQTU8
+Refresh: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUzNzVmOWI4LTE3MGYtMTFmMC1hNzNhLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDY0NjU0NiwiZXhwIjoxNzQ1OTQyNTQ2fQ.eRere5gkcLYf7Xfgex8_t3UG7dPfXRSEk8dyBWXJ8M4
 
 {
   "email": "josbertadmin@gmail.com",
