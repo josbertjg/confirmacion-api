@@ -3,8 +3,8 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-  "email": "josbertmora@gmail.com",
-  "password": "435434698"
+  "email": "josbertadmin@gmail.com",
+  "password": "2815001"
 }
 
 ### Refresh token
@@ -13,8 +13,8 @@ Content-Type: application/json
 Refresh: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2NDJlNDAwLTE1NGMtMTFmMC1iMzJmLTNjN2MzZjgwNmQxOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0NDIxNTExMSwiZXhwIjoxNzQ1NTExMTExfQ.F4y_uy5oDlKlGy3x_6RkIOXbRVwvKOjA94USEkRQTU8
 
 {
-  "email": "josbertjg@gmail.com",
-  "password": "29026225"
+  "email": "josbertadmin@gmail.com",
+  "password": "28150010"
 }
 
 ### Create un confirmando
@@ -44,5 +44,6 @@ Content-Type: application/json
   "phone": "04145598216",
   "born_date": "2001-10-12",
   "id_parroquia": 40,
-  "cedula": "V29624809"
+  "cedula": "V29624809",
+  "address": "Una casa muy grande"
 }
